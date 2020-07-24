@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MyBills</string>
+    <string name="amount">Amount</string>
+    <string name="last_upadated">Last Update on</string>
+    <string name="date_hint_text">Date (DD-MM-YYYY)</string>
+    <string name="title_text">Add Item</string>
+    <string name="style_hint_text">Style</string>
+    <string name="price_hint_text">Price</string>
+    <string name="style_no_hint_text">Style number</string>
+    <string name="description_hint_text">Description</string>
+    <string name="submit_button">Add</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="home_item">Home</string>
+    <string name="view_item">View</string>
+    <string name="th_date">Date</string>
+    <string name="th_styleno">Style No</string>
+    <string name="th_style">Style</string>
+    <string name="th_description">Description</string>
+    <string name="th_price">Price</string>
+    <string name="table_heading">Bill</string>
+    <string name="add_item">Add</string>
+    <string name="title_heading">Digital Billing</string>
+</resources>
