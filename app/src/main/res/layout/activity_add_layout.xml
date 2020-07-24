@@ -27,6 +27,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/title_text"
+        android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/date"
