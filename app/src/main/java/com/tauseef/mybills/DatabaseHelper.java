@@ -50,10 +50,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public Cursor getAllItenms()
+    public Cursor getAllItems()
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+ TABLE_NAME, null);
         return cursor;
+    }
+
+    public Cursor getOneRow(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        //Cursor cur = db.rawQuery("SELECT * FROM "+ TABLE_NAME, )
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ TABLE_NAME+" WHERE ID = "+id, null);
+        cursor.moveToFirst();
+        return cursor;
+    }
+
+    public boolean updateRow(String id, String date, String style, String styleno, String description, long price)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, date);
+        contentValues.put(COL_3, style);
+        contentValues.put(COL_4, styleno);
+        contentValues.put(COL_5, description);
+        contentValues.put(COL_6, price);
+        db.update(TABLE_NAME,contentValues,"ID = ?", new String[] {id});
+        return true;
+    }
+
+    public int deleteData(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, "ID = ?", new String[] {id});
     }
 }

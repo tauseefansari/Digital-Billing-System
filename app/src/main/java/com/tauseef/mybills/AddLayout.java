@@ -7,13 +7,16 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -21,10 +24,15 @@ import java.util.Calendar;
 
 public class AddLayout extends AppCompatActivity {
 
+    private final static int ID_ADD = 1;
+    private final static int ID_HOME = 2;
+    private final static int ID_VIEW = 3;
+
     private TextInputLayout mDate, mStyle, mPrice, mStyleNo, mDescription;
-    private Button submit,cancel;
+    private Button submit,cancel, update;
     private DatabaseHelper mHelper;
-    private BottomNavigationView mNavigationView;
+    private TextView mTitle;
+
     private static final String MY_PREFS = "bill";
     private static final String MY_DATE = "date";
     SharedPreferences mPreferences;
@@ -34,32 +42,50 @@ public class AddLayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_layout);
 
-        mPreferences = getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE);
+        MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom);
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_ADD, R.drawable.ic_add));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_VIEW, R.drawable.ic_view));
 
-        mNavigationView = findViewById(R.id.bottom_navigation);
-        mNavigationView.setSelectedItemId(R.id.add);
-
-        mNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
-                    case R.id.view:
-                        startActivity(new Intent(AddLayout.this, DisplayLayout.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.home:
-                        startActivity(new Intent(AddLayout.this, MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.add:
-                        return true;
-                }
-                return false;
+            public void onShowItem(MeowBottomNavigation.Model item) {
+
             }
         });
 
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                switch (item.getId())
+                {
+                    case ID_ADD:
+                        Toast.makeText(AddLayout.this, "Add Already Selected", Toast.LENGTH_SHORT).show();
+                        //return;
+                        //Intent intent = getIntent();
+                        //finish();
+                        //startActivity(intent);
+                    case ID_HOME:
+                        //Toast.makeText(AddLayout.this, "Home Selected", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddLayout.this, MainActivity.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case ID_VIEW:
+                        //Toast.makeText(AddLayout.this, "View Selected", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddLayout.this, DisplayLayout.class));
+                        overridePendingTransition(0,0);
+                        break;
+                }
+            }
+        });
+
+        bottomNavigation.show(ID_ADD, true);
+
+        mPreferences = getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE);
+
+
         mHelper = new DatabaseHelper(this);
+        mTitle = findViewById(R.id.title);
 
         mDate = findViewById(R.id.date);
         mPrice = findViewById(R.id.price);
@@ -68,6 +94,42 @@ public class AddLayout extends AppCompatActivity {
         mDescription = findViewById(R.id.description);
         submit = findViewById(R.id.submit);
         cancel = findViewById(R.id.cancel);
+        update = findViewById(R.id.update);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+        {
+            mTitle.setText("Edit Item");
+            final String id = bundle.getString("id");
+            Cursor row = mHelper.getOneRow(id);
+            mDate.getEditText().setText(row.getString(1));
+            mStyle.getEditText().setText(row.getString(2));
+            mStyleNo.getEditText().setText(row.getString(3));
+            mDescription.getEditText().setText(row.getString(4));
+            mPrice.getEditText().setText(""+row.getString(5));
+            submit.setVisibility(View.GONE);
+            update.setVisibility(View.VISIBLE);
+            update.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    boolean res = mHelper.updateRow(id, mDate.getEditText().getText().toString(), mStyle.getEditText().getText().toString(), mStyleNo.getEditText().getText().toString(), mDescription.getEditText().getText().toString(), Long.valueOf(mPrice.getEditText().getText().toString()));
+                    if (res)
+                    {
+                        mDate.getEditText().setText("");
+                        mStyle.getEditText().setText("");
+                        mStyleNo.getEditText().setText("");
+                        mPrice.getEditText().setText("");
+                        mDescription.getEditText().setText("");
+                        Toast.makeText(AddLayout.this, "Item updated", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddLayout.this, DisplayLayout.class));
+                    }
+                    else
+                    {
+                        Toast.makeText(AddLayout.this, "Item not updated", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
 
         Calendar now = Calendar.getInstance();
         final int day = now.get(Calendar.DAY_OF_MONTH);
@@ -121,6 +183,7 @@ public class AddLayout extends AppCompatActivity {
                         mPrice.getEditText().setText("");
                         mDescription.getEditText().setText("");
                         Toast.makeText(AddLayout.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddLayout.this, DisplayLayout.class));
                     }
                     else
                         Toast.makeText(AddLayout.this, "Data Not Inserted", Toast.LENGTH_SHORT).show();

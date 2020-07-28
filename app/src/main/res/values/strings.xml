@@ -20,4 +20,7 @@
     <string name="table_heading">Bill</string>
     <string name="add_item">Add</string>
     <string name="title_heading">Digital Billing</string>
+    <string name="pdf_button">Generate PDF</string>
+    <string name="th_action">Action</string>
+    <string name="update_button">Update</string>
 </resources>

@@ -22,18 +22,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape"
-        android:backgroundTint="@drawable/selector"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_items" />
+        app:mbn_backgroundBottomColor="#ffffff"
+        app:mbn_circleColor="#ffffff"
+        app:mbn_defaultIconColor="#90a4ae"
+        app:mbn_rippleColor="#2f424242"
+        app:mbn_selectedIconColor="#3c415e"
+        app:mbn_shadowColor="#1f212121"
+        />
 
 
     <ScrollView
@@ -43,6 +45,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,9 +69,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="10dp"
-                        android:gravity="center"
+                        android:paddingBottom="10dp"
                         android:text="@string/th_date"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -77,9 +81,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="10dp"
-                        android:gravity="center"
+                        android:paddingBottom="10dp"
                         android:text="@string/th_styleno"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -88,9 +93,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="10dp"
-                        android:gravity="center"
+                        android:paddingBottom="10dp"
                         android:text="@string/th_style"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -99,9 +105,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="10dp"
-                        android:gravity="center"
+                        android:paddingBottom="10dp"
                         android:text="@string/th_description"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -110,10 +117,24 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="10dp"
-                        android:gravity="center"
+                        android:paddingBottom="10dp"
                         android:text="@string/th_price"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="2"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="@string/th_action"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -123,5 +144,16 @@
             </TableLayout>
         </HorizontalScrollView>
     </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        android:text="@string/pdf_button"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
