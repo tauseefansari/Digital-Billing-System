@@ -6,9 +6,10 @@ It is a completely customized billing system for practice purpose with SQLite3 D
 
 ## Snapshot of the project
 
-![](ss1.PNG) ![](ss2.PNG)
-
-![](ss3.PNG)
+      ![](ss1.PNG) 
+![](ss2.PNG) ![](ss3.PNG)
+![](ss4.PNG) ![](ss5.PNG)
+![](ss6.PNG) ![](ss7.PNG)
 
 ## Contributing
 
