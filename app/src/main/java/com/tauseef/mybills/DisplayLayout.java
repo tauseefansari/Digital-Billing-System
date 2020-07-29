@@ -101,17 +101,21 @@ public class DisplayLayout extends AppCompatActivity {
                         startActivity(new Intent(DisplayLayout.this, MainActivity.class));
                         overridePendingTransition(0,0);
                         break;
-                    case ID_VIEW:
-                        Toast.makeText(DisplayLayout.this, "Display Already Selected", Toast.LENGTH_SHORT).show();
-                        return;
-                        //Intent intent = getIntent();
-                        //finish();
-                        //startActivity(intent);
                 }
             }
         });
 
         bottomNavigation.show(ID_VIEW, true);
+
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                if (item.getId() == ID_VIEW)
+                {
+                    Toast.makeText(DisplayLayout.this, "View Already Selected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         mHelper = new DatabaseHelper(this);
 

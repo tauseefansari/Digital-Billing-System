@@ -59,12 +59,6 @@ public class AddLayout extends AppCompatActivity {
             public void onClickItem(MeowBottomNavigation.Model item) {
                 switch (item.getId())
                 {
-                    case ID_ADD:
-                        Toast.makeText(AddLayout.this, "Add Already Selected", Toast.LENGTH_SHORT).show();
-                        //return;
-                        //Intent intent = getIntent();
-                        //finish();
-                        //startActivity(intent);
                     case ID_HOME:
                         //Toast.makeText(AddLayout.this, "Home Selected", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(AddLayout.this, MainActivity.class));
@@ -80,6 +74,16 @@ public class AddLayout extends AppCompatActivity {
         });
 
         bottomNavigation.show(ID_ADD, true);
+
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                if (item.getId() == ID_ADD)
+                {
+                    Toast.makeText(AddLayout.this, "Add Already Selected", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         mPreferences = getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE);
 
