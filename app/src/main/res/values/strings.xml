@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyBills</string>
+    <string name="app_name">Digital Billing</string>
     <string name="amount">Amount</string>
     <string name="last_upadated">Last Update on</string>
     <string name="date_hint_text">Date (DD-MM-YYYY)</string>
