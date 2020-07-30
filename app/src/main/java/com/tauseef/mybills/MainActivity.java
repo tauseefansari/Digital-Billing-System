@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         mPieChart.setData(pieData);
         mPieChart.setCenterText("Billing \nInformation");
         mPieChart.setCenterTextSize(15f);
+        mPieChart.getDescription().setText("Billing Information");
         mPieChart.animateY(2000);
         mPieChart.invalidate();
 
