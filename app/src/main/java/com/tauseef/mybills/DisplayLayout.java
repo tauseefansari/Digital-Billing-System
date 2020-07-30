@@ -348,6 +348,7 @@ public class DisplayLayout extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             try {
                 createPDF();
+                mHelper.dropAndRecreate();
             } catch (FileNotFoundException | DocumentException e) {
                 e.printStackTrace();
             }

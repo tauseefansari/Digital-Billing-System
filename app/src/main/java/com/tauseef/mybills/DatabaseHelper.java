@@ -99,4 +99,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return pieEntries;
     }
+    
+    public void dropAndRecreate()
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        onCreate(sqLiteDatabase);
+    }
 }
