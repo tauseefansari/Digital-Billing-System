@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<PieEntry> pieEntries = mHelper.chartData();
         //Log.d(TAG, "onCreate: First Entry is : "+pieEntries.get(0));
         //Toast.makeText(MainActivity.this, "First Entry is : "+pieEntries.get(0), Toast.LENGTH_SHORT).show();
-        PieDataSet dataSet = new PieDataSet(pieEntries, "Bill Information");
+        PieDataSet dataSet = new PieDataSet(pieEntries, "");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         PieData pieData = new PieData(dataSet);
         mPieChart.setData(pieData);
