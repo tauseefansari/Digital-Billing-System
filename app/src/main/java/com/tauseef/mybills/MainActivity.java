@@ -3,16 +3,27 @@ package com.tauseef.mybills;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,12 +36,20 @@ public class MainActivity extends AppCompatActivity {
     private static final String MY_PREFS = "bill";
     private static final String MY_DATE = "date";
     private static final String MY_PRICE = "price";
+
+    private DatabaseHelper mHelper;
+
+    private PieChart mPieChart;
     SharedPreferences mPreferences;
+
+    private static final String TAG = "Helper";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mHelper = new DatabaseHelper(this);
 
         final MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom);
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_ADD, R.drawable.ic_add));
@@ -74,6 +93,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mPieChart = findViewById(R.id.pieChart);
+        ArrayList<PieEntry> pieEntries = mHelper.chartData();
+        //Log.d(TAG, "onCreate: First Entry is : "+pieEntries.get(0));
+        //Toast.makeText(MainActivity.this, "First Entry is : "+pieEntries.get(0), Toast.LENGTH_SHORT).show();
+        PieDataSet dataSet = new PieDataSet(pieEntries, "Bill Information");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        PieData pieData = new PieData(dataSet);
+        mPieChart.setData(pieData);
+        mPieChart.setCenterText("Billing \nInformation");
+        mPieChart.setCenterTextSize(15f);
+        mPieChart.animateY(2000);
+        mPieChart.invalidate();
 
         mPreferences = getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE);
 

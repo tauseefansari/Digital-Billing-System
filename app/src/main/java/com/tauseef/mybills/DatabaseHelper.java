@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Info.db";
@@ -82,5 +86,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, "ID = ?", new String[] {id});
+    }
+
+    public ArrayList<PieEntry> chartData()
+    {
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = getAllItems();
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+        {
+            pieEntries.add(new PieEntry(cursor.getInt(5), cursor.getString(2)));
+        }
+        return pieEntries;
     }
 }

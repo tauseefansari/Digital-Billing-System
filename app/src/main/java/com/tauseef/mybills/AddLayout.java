@@ -116,20 +116,22 @@ public class AddLayout extends AppCompatActivity {
             update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    boolean res = mHelper.updateRow(id, mDate.getEditText().getText().toString(), mStyle.getEditText().getText().toString(), mStyleNo.getEditText().getText().toString(), mDescription.getEditText().getText().toString(), Long.valueOf(mPrice.getEditText().getText().toString()));
-                    if (res)
-                    {
-                        mDate.getEditText().setText("");
-                        mStyle.getEditText().setText("");
-                        mStyleNo.getEditText().setText("");
-                        mPrice.getEditText().setText("");
-                        mDescription.getEditText().setText("");
-                        Toast.makeText(AddLayout.this, "Item updated", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AddLayout.this, DisplayLayout.class));
-                    }
+                    if (validateDate() | validateStyle() | validateStyleNo() | validateDescription() | validatePrice() )
+                        return;
                     else
                     {
-                        Toast.makeText(AddLayout.this, "Item not updated", Toast.LENGTH_SHORT).show();
+                        boolean res = mHelper.updateRow(id, mDate.getEditText().getText().toString(), mStyle.getEditText().getText().toString(), mStyleNo.getEditText().getText().toString(), mDescription.getEditText().getText().toString(), Long.valueOf(mPrice.getEditText().getText().toString()));
+                        if (res) {
+                            mDate.getEditText().setText("");
+                            mStyle.getEditText().setText("");
+                            mStyleNo.getEditText().setText("");
+                            mPrice.getEditText().setText("");
+                            mDescription.getEditText().setText("");
+                            Toast.makeText(AddLayout.this, "Item updated", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(AddLayout.this, DisplayLayout.class));
+                        } else {
+                            Toast.makeText(AddLayout.this, "Item not updated", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });

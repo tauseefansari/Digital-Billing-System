@@ -11,16 +11,28 @@
         android:id="@+id/title_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:text="@string/title_heading"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/pieChart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/slategray"
         app:layout_constraintBottom_toTopOf="@+id/card2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottom"
@@ -40,12 +52,12 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card2"
         android:layout_width="180dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/pieChart">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,22 +73,22 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/amount"
                     android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textSize="20sp"
-                    android:gravity="center" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text=""
-                    android:textSize="26sp"
                     android:gravity="center"
-                    android:textStyle="bold"
+                    android:text=""
                     android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/green" />
+                    android:textColor="@color/green"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>
@@ -86,12 +98,12 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="180dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom"
         app:layout_constraintEnd_toStartOf="@+id/card2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/pieChart">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,22 +119,22 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/last_upadated"
-                    android:textSize="20sp"
                     android:gravity="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6" />
+                    android:text="@string/last_upadated"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text=""
-                    android:textStyle="bold"
-                    android:textSize="26sp"
                     android:gravity="center"
+                    android:text=""
                     android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/red"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>

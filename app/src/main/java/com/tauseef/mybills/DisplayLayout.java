@@ -178,6 +178,7 @@ public class DisplayLayout extends AppCompatActivity {
             return;
         }
         else
+            totals = 0;
             while (records.moveToNext())
             {
                 totals = totals + Long.valueOf(records.getString(5));
@@ -311,15 +312,11 @@ public class DisplayLayout extends AppCompatActivity {
 
         mTable.addView(last);
 
-        updateSharedPrefs();
-
-    }
-
-    private void updateSharedPrefs() {
         mPreferences = getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(MY_PRICE, Long.toString(totals));
         editor.commit();
+
     }
 
     private class ProgressThread extends AsyncTask<Void, Void, Void>
