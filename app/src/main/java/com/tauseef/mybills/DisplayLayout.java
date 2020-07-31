@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -175,6 +176,7 @@ public class DisplayLayout extends AppCompatActivity {
         {
             mTable.setVisibility(View.GONE);
             mTitle.setText("No records to show");
+            pdf.setVisibility(View.GONE);
             return;
         }
         else
@@ -349,10 +351,16 @@ public class DisplayLayout extends AppCompatActivity {
             try {
                 createPDF();
                 mHelper.dropAndRecreate();
+                clearSharedPreferences();
             } catch (FileNotFoundException | DocumentException e) {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        private void clearSharedPreferences() {
+            mPreferences.edit().remove(MY_DATE).apply();
+            mPreferences.edit().remove(MY_PRICE).apply();
         }
 
         private void previewPDF() {
@@ -366,11 +374,11 @@ public class DisplayLayout extends AppCompatActivity {
                 inte.setAction(Intent.ACTION_VIEW);
                 Uri uri = Uri.fromFile(pdfFile);
                 inte.setDataAndType(uri, "application/pdf");
-                inte.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                inte.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(inte);
             }
             else
-                Toast.makeText(DisplayLayout.this, "You dont have proper application to view this file", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DisplayLayout.this, "Files stored in Bills", Toast.LENGTH_SHORT).show();
         }
 
 

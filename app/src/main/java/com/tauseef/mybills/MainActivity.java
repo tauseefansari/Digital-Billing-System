@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -41,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private PieChart mPieChart;
     SharedPreferences mPreferences;
-
-    private static final String TAG = "Helper";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,16 +95,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mPieChart = findViewById(R.id.pieChart);
+        Legend legend = mPieChart.getLegend();
+        legend.setTextColor(Color.WHITE);
+        legend.setTextSize(16f);
         ArrayList<PieEntry> pieEntries = mHelper.chartData();
         //Log.d(TAG, "onCreate: First Entry is : "+pieEntries.get(0));
         //Toast.makeText(MainActivity.this, "First Entry is : "+pieEntries.get(0), Toast.LENGTH_SHORT).show();
         PieDataSet dataSet = new PieDataSet(pieEntries, "");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         PieData pieData = new PieData(dataSet);
+        pieData.setValueTextSize(10f);
+        pieData.setValueTextColor(Color.WHITE);
         mPieChart.setData(pieData);
         mPieChart.setCenterText("Billing \nInformation");
         mPieChart.setCenterTextSize(15f);
         mPieChart.getDescription().setText("Billing Information");
+        mPieChart.getDescription().setTextSize(15f);
+        mPieChart.getDescription().setTextColor(Color.WHITE);
         mPieChart.animateY(2000);
         mPieChart.invalidate();
 
