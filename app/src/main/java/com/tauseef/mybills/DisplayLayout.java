@@ -352,6 +352,7 @@ public class DisplayLayout extends AppCompatActivity {
                 createPDF();
                 mHelper.dropAndRecreate();
                 clearSharedPreferences();
+                startActivity(new Intent(DisplayLayout.this, MainActivity.class));
             } catch (FileNotFoundException | DocumentException e) {
                 e.printStackTrace();
             }
