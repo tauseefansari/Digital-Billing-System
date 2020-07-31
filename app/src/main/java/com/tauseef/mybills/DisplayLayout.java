@@ -332,7 +332,7 @@ public class DisplayLayout extends AppCompatActivity {
             {
                 mDialog.dismiss();
             }
-            previewPDF();
+            Toast.makeText(DisplayLayout.this, "Files stored in Bills", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -364,7 +364,7 @@ public class DisplayLayout extends AppCompatActivity {
             mPreferences.edit().remove(MY_PRICE).apply();
         }
 
-        private void previewPDF() {
+        /*private void previewPDF() {
             PackageManager packageManager = DisplayLayout.this.getPackageManager();
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setType("application/pdf");
@@ -380,7 +380,7 @@ public class DisplayLayout extends AppCompatActivity {
             }
             else
                 Toast.makeText(DisplayLayout.this, "Files stored in Bills", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
 
         private void createPDF() throws FileNotFoundException, DocumentException {

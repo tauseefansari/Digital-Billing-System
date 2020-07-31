@@ -52,8 +52,9 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card2"
         android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:layout_margin="8dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card"
