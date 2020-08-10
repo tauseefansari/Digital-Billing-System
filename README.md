@@ -1,4 +1,3 @@
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/releases/)
 [![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/graphs/contributors/)
 [![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/pulls/)
