@@ -1,3 +1,9 @@
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/releases/)
+[![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/graphs/contributors/)
+[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/Naereen/StrapDown.js.svg)](https://github.com/tauseefansari/Digital-Billing-System/pulls/)
+[![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
+
 # Digital-Billing-System
 > Simple billing system with Material design UI
 
